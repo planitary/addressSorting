@@ -39,6 +39,4 @@ app:
 #  global-url-prefix: https://test-scs.52imile.cn/
 # 香港uat
   global-url-prefix: https://uat-scs.52imile.cn/
-server:
-  port:
-    8081
+
