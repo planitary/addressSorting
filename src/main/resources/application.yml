@@ -1,0 +1,41 @@
+spring:
+  main:
+    allow-circular-references: true
+  datasource:
+    dynamic:
+      primary: cornerstone
+      datasource:
+        cornerstone: # 第一个数据源，cornerstone是名字
+          url: jdbc:mysql://pc-bp15h2gixq5l9r4nk.mysql.polardb.rds.aliyuncs.com:3306/cornerstone?useUnicode=true&characterEncoding=UTF-8
+          username: cornerstone_rw
+          password: CnWI2lpyKVPSUOLT
+          driver-class-name: com.mysql.cj.jdbc.Driver
+
+        tms_hub_test: # 第二个数据源
+          url: jdbc:mysql://pc-bp15h2gixq5l9r4nk.mysql.polardb.rds.aliyuncs.com:3306/tms_hub_test?useUnicode=true&charactetEncoding=utf8mb4
+          username: tms_hub_test_rw
+          password: cBKb0a9zf2FO
+          driver-class-name: com.mysql.cj.jdbc.Driver
+      druid:
+        initial-size: 1
+        max-active: 20
+        max-wait: 60000
+
+    druid:
+      connection-init-sqls: SET NAMES utf8mb4
+  # 过滤druid的自动装配
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+# mybatis-pls日志
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl
+
+app:
+  # 生产环境
+#  global-url-prefix: https://scs.imile.com/
+  # 测试环境
+#  global-url-prefix: https://test-scs.52imile.cn/
+# 香港uat
+  global-url-prefix: https://uat-scs.52imile.cn/

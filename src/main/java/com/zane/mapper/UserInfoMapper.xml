@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zane.mapper.UserInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zane.dao.UserInfoDo">
+        <id column="id" property="id" />
+        <result column="waybill_no" property="waybillNo" />
+        <result column="order_type" property="orderType" />
+        <result column="org_id" property="orgId" />
+        <result column="country" property="country" />
+        <result column="province" property="province" />
+        <result column="city" property="city" />
+        <result column="trend_sub_no" property="trendSubNo" />
+        <result column="start_dc_name" property="startDcName" />
+        <result column="start_dc_code" property="startDcCode" />
+        <result column="destination_dc_code" property="destinationDcCode" />
+        <result column="destination_dc_name" property="destinationDcName"/>
+        <result column="start_ds_code" property="startDsCode"/>
+        <result column="start_ds_name" property="startDsName"/>
+        <result column="act_pick_ds_code" property="actPickDsCode"/>
+        <result column="act_pick_ds_name" property="actPickDsName"/>
+        <result column="expect_pickup_date" property="expectPickupDate"/>
+        <result column="reality_pickup_date" property="realityPickupDate"/>
+        <result column="last_dc_departure_time" property="lastDcDepartureTime"/>
+        <result column="last_dc_out_bound_time" property="lastDcOutboundTime"/>
+        <result column="dispatch_code" property="dispatchCode"/>
+        <result column="dispatch_name" property="dispatchName"/>
+        <result column="dispatch_inbound_time" property="dispatchInboundTime"/>
+        <result column="dispatch_outbound_time" property="dispatchOutboundTime"/>
+        <result column="expect_delivered_date" property="expectDeliveredDate"/>
+        <result column="reality_delivered_date" property="realityDeliveredDate"/>
+        <result column="expect_ds_arrive_time" property="expectDsArriveTime"/>
+        <result column="router_class_no" property="routerClassNo"/>
+        <result column="first_dc_start_time" property="firstDcStartTime"/>
+        <result column="is_over_time" property="isOverTime"/>
+        <result column="is_change_router" property="isChangeRouter"/>
+        <result column="is_delete" property="isDelete"/>
+        <result column="record_version" property="recordVersion"/>
+        <result column="pick_up_city" property="pickUpCity"/>
+        <result column="order_create_time" property="orderCreateTime"/>
+    </resultMap>
+
+    <resultMap id="userInfo" type="com.zane.dao.UserInfoDo">
+        <result column="id" property="id"/>
+        <result column="standard_id" property="standardId"/>
+        <result column="user_code" property="userCode"/>
+        <result column="phone" property="phone"/>
+        <result column="mobile" property="mobile"/>
+        <result column="country" property="country"/>
+        <result column="province" property="province"/>
+        <result column="city" property="city"/>
+        <result column="area" property="area"/>
+
+        <result column="zip_code" property="zipCode"/>
+        <result column="suburb" property="suburb"/>
+        <result column="street" property="street"/>
+        <result column="internal_number" property="internalNumber"/>
+        <result column="external_number" property="externalNumber"/>
+        <result column="detail_address" property="detailAddress"/>
+        <result column="address_code" property="addressCode"/>
+
+        <result column="point" property="point"/>
+        <result column="point_source" property="pointSource"/>
+        <result column="trust_value" property="trustValue"/>
+        <result column="extend" property="extend"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="is_delete" property="isDelete"/>
+    </resultMap>
+    
+    <select id="getUserInfo" resultType="com.zane.dao.UserInfoDo" parameterType="String">
+        select  ST_AsText(point) as point,id,standard_id,user_code,phone,mobile,country,province,city,area,zip_code,
+                suburb,street,internal_number,external_number,detail_address,address_code,
+                point_source,trust_value,extend,create_time,update_time,is_delete from user_info
+        where address_code = #{addressCode} order by update_time desc limit 1
+    </select>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,standard_id,user_code,phone,mobile,country,province,city,area,zip_code,
+        suburb,street,internal_number,external_number,detail_address,address_code,
+        point,point_source,trust_value,extend,create_time,update_time,is_delete
+    </sql>
+    
+    
+
+</mapper>

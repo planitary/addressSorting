@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zane.mapper.WriteBackRecordMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zane.dao.dto.WriteBackResultDTO">
+        <id column="id" property="id" />
+        <result column="orgId" property="org_id" />
+        <result column="isProvinceReturn" property="is_province_return" />
+        <result column="isCityReturn" property="is_city_return" />
+        <result column="isStationReturn" property="is_station_return" />
+        <result column="isZoneReturn" property="is_zone_return" />
+        <result column="isAreaReturn" property="is_area_return" />
+        <result column="isPointReturn" property="is_point_return" />
+        <result column="isZipCodeReturn" property="is_zip_code_return" />
+        <result column="isFirstReturn" property="is_first_return" />
+        <result column="isSecondReturn" property="is_second_return" />
+        <result column="isThirdReturn" property="is_third_return"/>
+        <result column="isFourReturn" property="is_four_return"/>
+        <result column="sortRecordId" property="sort_record_id"/>
+        <result column="waybillNo" property="waybill_no"/>
+        <result column="result" property="result"/>
+    </resultMap>
+
+    <select id="getWriteRecordResult" parameterType="String" resultType="com.zane.dao.dto.WriteMqJsonDTO">
+        select result from cs_address_sorting_write_record where waybill_no = #{orderNo}
+    </select>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,org_id,is_province_return,is_city_return,is_station_return,is_zone_return,is_area_return,is_point_return,
+        is_zip_code_return,is_first_return,is_second_return,is_third_return,is_four_return,sort_record_id,waybill_no,result
+    </sql>
+    
+    
+
+</mapper>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zane.mapper.MatchPointRecordMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zane.dao.dto.MatchPointRecordDTO">
+        <id column="id" property="id"/>
+        <result column="business_type" property="businessType"/>
+        <result column="business_number" property="businessNumber"/>
+        <result column="country" property="country"/>
+        <result column="province" property="province"/>
+        <result column="area" property="area"/>
+        <result column="zip_code" property="zipCode"/>
+        <result column="street_name" property="streetName"/>
+        <result column="suburb" property="suburb"/>
+        <result column="internal_number" property="internalNumber"/>
+        <result column="external_number" property="externalNumber"/>
+        <result column="detail_address" property="detailAddress"/>
+        <result column="is_match_success" property="isMatchSuccess"/>
+        <!--                <result column="point" property="point" typeHandler="com.alibaba.fastjson.support.geo"/>-->
+<!--        <result column="point" property="point"/>-->
+        <result column="point_source" property="pointSource"/>
+        <result column="address_code" property="addressCode"/>
+        <result column="trust_value" property="trustValue"/>
+        <result column="address_similary" property="addressSimilary"/>
+        <result column="address_match_strategy" property="addressMatchStrategy"/>
+        <result column="is_delete" property="isDelete"/>
+        <result column="create_date" property="createDate"/>
+        <result column="create_user_code" property="createUserCode"/>
+        <result column="create_user_name" property="createUserName"/>
+        <result column="last_upd_date" property="lastUpdDate"/>
+        <result column="last_upd_user_code" property="lastUpdUserCode"/>
+        <result column="last_upd_user_name" property="lastUpdUserName"/>
+        <result column="address_id" property="addressId"/>
+        <result column="address_match_path" property="addressMatchPath"/>
+        <result column="address_type" property="addressType"/>
+    </resultMap>
+
+    <resultMap id="MatchPointResult" type="com.zane.dao.dto.MatchPointRecordDTO">
+        <id column="id" property="id"/>
+        <result column="business_type" property="businessType"/>
+        <result column="business_number" property="businessNumber"/>
+        <result column="country" property="country"/>
+        <result column="province" property="province"/>
+        <result column="area" property="area"/>
+        <result column="zip_code" property="zipCode"/>
+
+        <result column="street_name" property="streetName"/>
+        <result column="suburb" property="suburb"/>
+        <result column="internal_number" property="internalNumber"/>
+        <result column="external_number" property="externalNumber"/>
+        <result column="detail_address" property="detailAddress"/>
+        <result column="is_match_success" property="isMatchSuccess"/>
+        <result column="point" property="point"/>
+        <result column="point_source" property="pointSource"/>
+        <result column="address_code" property="addressCode"/>
+        <result column="trust_value" property="trustValue"/>
+        <result column="address_similary" property="addressSimilary"/>
+        <result column="address_match_strategy" property="addressMatchStrategy"/>
+        <result column="is_delete" property="isDelete"/>
+        <result column="create_date" property="createDate"/>
+        <result column="create_user_code" property="createUserCode"/>
+        <result column="create_user_name" property="createUserName"/>
+        <result column="last_upd_date" property="lastUpdDate"/>
+        <result column="last_upd_user_code" property="lastUpdUserCode"/>
+        <result column="last_upd_user_name" property="lastUpdUserName"/>
+        <result column="address_id" property="addressId"/>
+        <result column="address_match_path" property="addressMatchPath"/>
+        <result column="address_type" property="addressType"/>
+        <result column="point" property="point"/>
+    </resultMap>
+
+    <select id="getMatchPoint" resultType="com.zane.dao.dto.MatchPointRecordDTO" parameterType="String">
+        select  ST_AsText(point) as point ,id, business_type, business_number, country,
+               province,city, area, zip_code,street_name,suburb,
+               internal_number,external_number,detail_address,is_match_success,point_source,address_code,
+               trust_value,address_similary,address_match_strategy,is_delete,create_date,
+               trust_value,create_user_name,last_upd_date,last_upd_user_code,last_upd_user_name,address_id,original_point_source,
+               address_match_path,address_type
+        from cs_address_match_point_record
+        where business_number = #{businessNumber}
+    </select>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id
+        , business_type, business_number, country, province,city, area, zip_code,street_name,suburb,
+          internal_number,external_number,detail_address,is_match_success,point_source,address_code,
+          trust_value,address_similary,address_match_strategy,is_delete,create_date,
+          trust_value,create_user_name,last_upd_date,last_upd_user_code,last_upd_user_name,address_id,original_point_source,
+          address_match_path,address_type
+    </sql>
+
+</mapper>

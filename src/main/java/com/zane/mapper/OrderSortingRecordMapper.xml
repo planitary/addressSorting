@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zane.mapper.OrderSortingRecordMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zane.dao.dto.OrderSortingRecordDTO">
+        <id column="id" property="id"/>
+        <result column="org_id" property="orgId"/>
+        <result column="sort_type" property="sortType"/>
+        <result column="input_business_date" property="inputBusinessDate"/>
+        <result column="input_country" property="inputCountry"/>
+        <result column="input_business_number" property="inputBusinessNumber"/>
+        <result column="input_city" property="inputCity"/>
+        <result column="input_area" property="inputArea"/>
+        <result column="input_address" property="inputAddress"/>
+        <result column="input_zip_code" property="inputZipCode"/>
+        <!--        <result column="input_geocoding" property="inputGeoCoding" />-->
+        <result column="input_station_code" property="inputStationCode"/>
+        <result column="input_geofence_code" property="inputGeofenceCode"/>
+        <result column="input_full_address" property="inputFullAddress"/>
+        <result column="is_sort_success" property="isSortSuccess"/>
+        <result column="sort_geocoding_source" property="sortGeocodingSource"/>
+        <result column="sort_address_code" property="sortAddressCode"/>
+        <result column="sort_address" property="sortAddress"/>
+        <result column="sort_address_similarity" property="sortAddressSimilarity"/>
+        <result column="sort_geofence_code" property="sortGeofenceCode"/>
+        <result column="sort_province" property="sortProvince"/>
+        <result column="sort_city" property="sortCity"/>
+        <result column="sort_area" property="sortArea"/>
+        <result column="sort_zip_code" property="sortZipCode"/>
+        <result column="sort_station_code" property="sortStationCode"/>
+        <result column="create_date" property="createDate"/>
+        <result column="create_user_code" property="createUserCode"/>
+        <result column="create_user_name" property="createUserName"/>
+        <result column="last_upd_date" property="lastUpdDate"/>
+        <result column="last_upd_user_code" property="lastUpdUserCode"/>
+        <result column="last_upd_user_name" property="lastUpdUserName"/>
+        <result column="input_address_code" property="inputAddressCode"/>
+        <result column="input_geocoding_source" property="inputGeocodingSource"/>
+        <result column="input_address_id" property="inputAddressId"/>
+        <result column="input_geocoding_fetch_way" property="inputGeocodingFetchWay"/>
+        <result column="sort_zone" property="sortZone"/>
+        <result column="sort_strategy" property="sortStrategy"/>
+        <result column="sort_record_id" property="sortRecordId"/>
+        <result column="sort_path" property="sortPath"/>
+        <result column="sort_client_config_id" property="sortClientConfigId"/>
+        <result column="sort_country_config_id" property="sortCountryConfigId"/>
+        <result column="client_code" property="clientCode"/>
+        <result column="client_name" property="clientName"/>
+        <result column="address_type" property="addressType"/>
+    </resultMap>
+
+    <resultMap id="sortingResult" type="com.zane.dao.dto.OrderSortingRecordDTO">
+        <id column="id" property="id"/>
+        <result column="org_id" property="orgId"/>
+        <result column="sort_type" property="sortType"/>
+        <result column="input_business_date" property="inputBusinessDate"/>
+        <result column="input_country" property="inputCountry"/>
+        <result column="input_business_number" property="inputBusinessNumber"/>
+        <result column="input_city" property="inputCity"/>
+        <result column="input_area" property="inputArea"/>
+        <result column="input_address" property="inputAddress"/>
+        <result column="input_zip_code" property="inputZipCode"/>
+        <result column="input_station_code" property="inputStationCode"/>
+        <result column="input_geofence_code" property="inputGeofenceCode"/>
+        <result column="input_full_address" property="inputFullAddress"/>
+        <result column="is_sort_success" property="isSortSuccess"/>
+        <result column="sort_geocoding_source" property="sortGeocodingSource"/>
+        <result column="sort_address_code" property="sortAddressCode"/>
+        <result column="sort_address" property="sortAddress"/>
+        <result column="sort_address_similarity" property="sortAddressSimilarity"/>
+        <result column="sort_geofence_code" property="sortGeofenceCode"/>
+        <result column="sort_province" property="sortProvince"/>
+        <result column="sort_city" property="sortCity"/>
+        <result column="sort_area" property="sortArea"/>
+        <result column="sort_zip_code" property="sortZipCode"/>
+        <result column="sort_station_code" property="sortStationCode"/>
+        <result column="create_date" property="createDate"/>
+        <result column="create_user_code" property="createUserCode"/>
+        <result column="create_user_name" property="createUserName"/>
+        <result column="last_upd_date" property="lastUpdDate"/>
+        <result column="last_upd_user_code" property="lastUpdUserCode"/>
+        <result column="last_upd_user_name" property="lastUpdUserName"/>
+        <result column="input_address_code" property="inputAddressCode"/>
+        <result column="input_geocoding_source" property="inputGeocodingSource"/>
+        <result column="input_address_id" property="inputAddressId"/>
+        <result column="input_geocoding_fetch_way" property="inputGeocodingFetchWay"/>
+        <result column="sort_zone" property="sortZone"/>
+        <result column="sort_strategy" property="sortStrategy"/>
+        <result column="sort_record_id" property="sortRecordId"/>
+        <result column="sort_path" property="sortPath"/>
+        <result column="sort_client_config_id" property="sortClientConfigId"/>
+        <result column="sort_country_config_id" property="sortCountryConfigId"/>
+        <result column="client_code" property="clientCode"/>
+        <result column="client_name" property="clientName"/>
+        <result column="address_type" property="addressType"/>
+        <result column="point" property="point"/>
+    </resultMap>
+
+    <select id="getSortRes" resultMap="sortingResult" parameterType="String">
+        select ST_AsText(input_geocoding) as point, id, org_id, sort_type, input_business_date,
+               input_country,input_business_number, input_city, input_area,input_address,input_zip_code,
+               input_station_code,input_geofence_code,input_full_address,input_geocoding_source,is_sort_success,sort_geocoding_source,sort_address_code,
+               sort_address,sort_address_similarity,sort_geofence_code,sort_province,sort_city,sort_area,sort_zip_code,sort_station_code,create_date,
+               create_user_code,create_user_name,last_upd_date,last_upd_user_code,last_upd_user_name,input_address_code,input_geocoding_source,input_address_id,
+               input_geocoding_fetch_way,sort_zone,sort_strategy,sort_record_id,sort_path,sort_client_config_id,sort_country_config_id,client_code,
+               client_name,address_type from cs_address_sorting_record
+        where input_business_number = #{inputBusinessNumber} and sort_type in ('PRE_ORDER_CREATE','DELIVERED_POINT','ORDER_CHANGE')
+    </select>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, org_id, sort_type, input_business_date, input_country,input_business_number, input_city, input_area,input_address,input_zip_code,
+          input_station_code,input_geofence_code,input_full_address,is_sort_success,sort_geocoding_source,sort_address_code,
+          sort_address,sort_address_similarity,sort_geofence_code,sort_province,sort_city,sort_area,sort_zip_code,sort_station_code,create_date,
+          create_user_code,create_user_name,last_upd_date,last_upd_user_code,last_upd_user_name,input_address_code,input_geocoding_source,input_address_id,
+          input_geocoding_fetch_way,sort_zone,sort_strategy,sort_record_id,sort_path,sort_client_config_id,sort_country_config_id,client_code,
+          client_name,address_type
+    </sql>
+
+</mapper>
